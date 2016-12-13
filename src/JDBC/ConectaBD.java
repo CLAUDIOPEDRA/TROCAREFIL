@@ -3,21 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package JDBC;
+package jdbc;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
-/**
+/** Esta é a classe de conexão com o banco de dados
  *
+ * @author Claudio Pedra
  *
  */
 public class ConectaBD {
 
-    public static Connection getConnection() throws SQLException, ClassNotFoundException {
-        Connection con;
-        Class.forName("com.mysql.jdbc.Driver");
-        return DriverManager.getConnection("jdbc:mysql://localhost/trocarefil", "root", "CL4UDI0P3DR4");
-        //return DriverManager.getConnection("jdbc:mysql://200.132.7.1:1080/ads-db-06","ads-db-06","%eN8$J");
-    }
+    public static Connection getConnection() throws SQLException {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            return DriverManager.getConnection("jdbc:mysql://localhost/trocarefil", "root", "root");
 
+
+        } catch (ClassNotFoundException ex) {
+            throw new SQLException(ex.getMessage());
+        }
+
+    }
 }
